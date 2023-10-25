@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML-Tag Übersicht</title>
+</head>
+<body>
+    <h1>Wichtige HTML-Tags</h1>
+    
+    <h2>&lt;h1&gt; bis &lt;h6&gt;</h2>
+    <p>Überschriften werden verwendet, um den Text zu strukturieren und hierarchisch anzuordnen.</p>
+    <h1>Dies ist eine h1-Überschrift</h1>
+    <h2>Dies ist eine h2-Überschrift</h2>
+    <h3>Dies ist eine h3-Überschrift</h3>
+    <h4>Dies ist eine h4-Überschrift</h4>
+    <h5>Dies ist eine h5-Überschrift</h5>
+    <h6>Dies ist eine h6-Überschrift</h6>
+
+    <h2>&lt;div&gt;</h2>
+    <p>Das &lt;div&gt;-Tag wird verwendet um einzelne Blöcke voneinander zu trennen</p>
+
+    <h2>&lt;p&gt;</h2>
+    <p>Das &lt;p&gt;-Tag wird verwendet, um Absätze zu erstellen.</p>
+    <p>Dies ist ein Absatz.</p>
+
+    <h2>&lt;a&gt;</h2>
+    <p>Das &lt;a&gt;-Tag wird verwendet, um Links zu erstellen.</p>
+    <a href="https://www.example.com">Das ist ein Link zu Example.com</a>
+
+    <h2>&lt;img&gt;</h2>
+    <p>Das &lt;img&gt;-Tag wird verwendet, um Bilder einzufügen.</p>
+    <img src="https://pixabay.com/get/ge56b3f5ad74f2431f28bf07f76fe1c77b8bbdd9d64afcbfea2d0df1410e28f389bdab65922049fb87ab94ff00c208956_1280.png" alt="Beschreibung des Bildes" width="300" height="200">
+
+    <h2>&lt;ul&gt; und &lt;li&gt;</h2>
+    <p>&lt;ul&gt; und &lt;li&gt; werden verwendet, um ungeordnete Listen zu erstellen.</p>
+    <ul>
+        <li>Listenelement 1</li>
+        <li>Listenelement 2</li>
+        <li>Listenelement 3</li>
+    </ul>
+
+    <h2>&lt;ol&gt; und &lt;li&gt;</h2>
+    <p>&lt;ol&gt; und &lt;li&gt; werden verwendet, um geordnete Listen zu erstellen.</p>
+    <ol>
+        <li>Listenelement 1</li>
+        <li>Listenelement 2</li>
+        <li>Listenelement 3</li>
+    </ol>
+
+    <h1>Input-Typen</h1>
+    
+    <h2>&lt;input type="text"&gt;</h2>
+    <p>Das &lt;input type="text"&gt;-Tag wird verwendet, um Texteingabefelder zu erstellen.</p>
+    <input type="text" placeholder="Text eingeben">
+
+    <h2>&lt;input type="password"&gt;</h2>
+    <p>Das &lt;input type="password"&gt;-Tag wird verwendet, um Passworteingabefelder zu erstellen.</p>
+    <input type="password" placeholder="Passwort eingeben">
+
+    <h2>&lt;input type="checkbox"&gt;</h2>
+    <p>Das &lt;input type="checkbox"&gt;-Tag wird verwendet, um Kontrollkästchen (Checkboxen) zu erstellen.</p>
+    <input type="checkbox" id="checkbox1">
+    <label for="checkbox1">Checkbox 1</label>
+
+    <h2>&lt;input type="radio"&gt;</h2>
+    <p>Das &lt;input type="radio"&gt;-Tag wird verwendet, um Optionsfelder (Radio-Buttons) zu erstellen.</p>
+    <input type="radio" id="radio1" name="radioGroup">
+    <label for="radio1">Option 1</label>
+    <input type="radio" id="radio2" name="radioGroup">
+    <label for="radio2">Option 2</label>
+
+    <h2>&lt;input type="submit"&gt;</h2>
+    <p>Das &lt;input type="submit"&gt;-Tag wird verwendet, um Schaltflächen zum Absenden von Formularen zu erstellen.</p>
+    <input type="submit" value="Absenden">
+
+    <h2>&lt;select&gt;</h2>
+    <select id="select-input" name="select-input">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+
+    <h2>Form:</h2>
+    <form>
+        <label for="text-input">Name:</label>
+        <input type="text" id="text-input" name="text-input" required><br>
+
+        <label for="email-input">E-Mail:</label>
+        <input type="email" id="email-input" name="email-input" required><br>
+
+        <label for="password-input">Passwort:</label>
+        <input type="password" id="password-input" name="password-input" required><br>
+
+        <label for="number-input">Nummer:</label>
+        <input type="number" id="number-input" name="number-input" required><br>
+
+        <label for="date-input">Datum:</label>
+        <input type="date" id="date-input" name="date-input" required><br>
+
+        <label for="checkbox-input">Agbs bestätigen:</label>
+        <input type="checkbox" id="checkbox-input" name="checkbox-input"><br>
+
+        <label for="select-input">Auswahlliste:</label>
+        <select id="select-input" name="select-input">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select><br>
+
+        <input type="submit" value="Absenden">
+    </form>
+</body>
+</html>

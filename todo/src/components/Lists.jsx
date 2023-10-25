@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {Item} from "./Item";
+import { useState } from "react";
+import { Item } from "./Item";
 
 export function Lists() {
     const [unfinished, setUnfinished] = useState([]);
@@ -31,23 +31,21 @@ export function Lists() {
 
     return (
         <div className="lists">
-            <div className="unfinished-list" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+            <div className="unfinished-list">
                 {unfinished.map((text, index) => (
                     <Item key={index} text={text} index={index} unfinished={true} finishTask={finishTask}
-                          unfinishTask={unfinishTask} deleteTask={deleteTask}/>
+                        unfinishTask={unfinishTask} deleteTask={deleteTask} />
                 ))}
                 <div>
-                    <input type="text" value={input} onChange={e => setInput(e.target.value)} style={{marginTop: 20}}/>
-                    <button onClick={addTask}
-                            style={{backgroundColor: "blue", color: "white", fontSize: "large", borderRadius: 10, borderWidth: 0}}>+
-                    </button>
+                    <input type="text" value={input} onChange={e => setInput(e.target.value)} style={{ marginTop: 20 }} />
+                    <button onClick={addTask} className="add-task">+</button>
                 </div>
             </div>
-            <div className="finished-list" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+            <div className="finished-list">
                 <h2>Finished:</h2>
                 {finished.map((text, index) => (
                     <Item key={index} text={text} index={index} unfinished={false} finishTask={finishTask}
-                          unfinishTask={unfinishTask} deleteTask={deleteTask}/>
+                        unfinishTask={unfinishTask} deleteTask={deleteTask} />
                 ))}
             </div>
         </div>
