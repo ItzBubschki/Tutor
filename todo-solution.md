@@ -62,7 +62,7 @@ function clickDelete() {
 - [x] Liste von fertigen Tasks
 - [x] Inhalt des Input Feldes
 
-#### Wichtige Sieeinfos für JavaScript arrays:
+#### Wichtige Side-infos für JavaScript arrays:
 - `array.push(element)`: Fügt ein Element am Ende des Arrays hinzu
 - `array.splice(index, 1)`: Löscht ein Element an der Stelle `index` aus dem Array
 - `array.filter((element) => element !== elementToDelete)`: Erzeugt ein neues Array, in dem alle Elemente aus `array` sind, die nicht `elementToDelete` sind

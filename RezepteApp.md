@@ -2,7 +2,18 @@
 ## Wichtige Infos
 ### API: Woher bekommt ihr die Rezepte?
 - Alle Rezepte mit dem Namen Arrabiata: www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
-- Rezept mit bestimmter ID
+- Rezept mit bestimmter ID: www.themealdb.com/api/json/v1/1/lookup.php?i=52771
+
+#### Code:
+```js
+const [recipes, setRecipes] = useState([]);
+
+function getRecepiesForName(name) {
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")
+        .then((response) => response.json())
+        .then((data) => setRecipes(data.meals));
+}
+```
 
 ### Userflow:
 - Startseite: Zuletzte angesehene Rezepte

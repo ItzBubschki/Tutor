@@ -17,7 +17,8 @@ Siehe index.html
 ### Warum?
 #### sample.html vs sample.jsx
 Aufbau einer React Anwendung:
-[Component-Tree](image-1.png)
+
+![Component-Tree](image-1.png)
 
 ### Props
 `<img src="https://tinyurl.com/ycy9h7aa" width="200px" height="100px" />`
