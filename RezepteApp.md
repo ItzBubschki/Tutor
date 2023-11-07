@@ -6,6 +6,7 @@
 
 #### Code:
 ```js
+//In SearchPage.jsx
 const [recipes, setRecipes] = useState([]);
 
 function getRecepiesForName(name) {
@@ -27,6 +28,7 @@ function getRecepiesForName(name) {
 - Wir müssen sie importieren: `import {BrowserRouter, Route, Switch} from "react-router-dom";`
 - Wir müssen sie um unsere App wickeln:
 ```jsx
+//in App.js
 function App() {
   return (
       <BrowserRouter>
@@ -47,3 +49,5 @@ function App() {
 ```jsx
 const {id} = useParams();
 ```
+## Component Tree
+![Component Tree](overview-recipe-app.png)
