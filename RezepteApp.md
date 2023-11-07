@@ -51,3 +51,41 @@ const {id} = useParams();
 ```
 ## Component Tree
 ![Component Tree](overview-recipe-app.png)
+
+### Suchergebnisse speichern im Browser
+#### Local Storage
+- Local Storage ist ein Speicher im Browser, in dem wir Daten speichern können
+- Wir können Daten im Local Storage speichern mit `localStorage.setItem("key", "value")`
+- Wir können Daten aus dem Local Storage lesen mit `localStorage.getItem("key")`
+- Wir können Daten aus dem Local Storage löschen mit `localStorage.removeItem("key")`
+
+#### Code:
+```jsx
+//In HomePage.jsx
+const [lastViewed, setLastViewed] = useState([]);
+
+useEffect(() => {
+    const lastViewedString = localStorage.getItem("lastViewed");
+    if (lastViewedString) {
+        setLastViewed(JSON.parse(lastViewedString));
+    }
+}, []);
+
+```
+```jsx
+//In InspectRecipe.jsx
+const [lastViewed, setLastViewed] = useState([]);
+const {id} = useParams();
+
+useEffect(() => {
+    const lastViewedString = localStorage.getItem("lastViewed");
+    if (lastViewedString) {
+        lastViewedParsed = JSON.parse(lastViewedString);
+        if (!lastViewedParsed.includes(id)) {
+            setLastViewed([...lastViewedParsed, id]);
+            localStorage.setItem("lastViewed", JSON.stringify([...lastViewedParsed, id]));
+        }
+    }
+}, []);
+```
+
