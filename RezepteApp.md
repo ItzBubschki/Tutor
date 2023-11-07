@@ -29,19 +29,13 @@ function getRecepiesForName(name) {
 ```jsx
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/search">
-          <SearchPage/>
-        </Route>
-        <Route path="/recipe/:id">
-          <RecipePage/>
-        </Route>
-        <Route path="/">
-          <StartPage/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<StartPage/>}/>
+              <Route path="/search" element={<SearchPage/>}/>
+              <Route path="/recipe/:id" element={<InspectRecipe/>}/>
+          </Routes>
+      </BrowserRouter>
   );
 }
 ```
