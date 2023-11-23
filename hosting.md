@@ -38,56 +38,66 @@
 1. **GitHub-Konto erstellen**: Falls Sie noch kein GitHub-Konto haben, registrieren Sie sich auf [GitHub](https://github.com/) und loggen Sie sich ein.
 
 2. **Erstellen Sie ein Repository**: Erstellen Sie ein neues Repository 
-3. **GitHub Pages aktivieren**:
+3. **package.json anpassen**
+   - Fügen Sie in der package.json folgendes hinzu:
+   `"homepage": "https://<username>.github.io/<Repository>",`
+4. **Token erstellen**:
+   - gehen sie auf [GitHub](https://github.com/settings/tokens) und erstellen Sie ein neues Token
+   - geben Sie dem Token den Namen "GitHub Pages"
+   - kopieren sie ihren neuen token
+   - gehen sie zurück in ihr repo
+   - gehen sie auf "Settings" und dann auf "Secrets > actions"
+   - legen sie ein neues secret an `ACTIONS_DEPLOY_ACCESS_TOKEN` und fügen sie den kopierten token ein
+5. **GitHub Pages aktivieren**:
    - Klicken Sie auf "Settings" und scrollen Sie nach unten zu "GitHub Pages".
    - Wählen Sie den Branch aus, der Ihre statischen Dateien enthält.
    - Klicken Sie auf "Save".
-4. **Github action einrichten**
-   ```yaml
+6. **Github action einrichten**
+```yaml
 name: CI/CD
 
 on:
-push:
-branches: [ main ]
-pull_request:
-branches: [ main ]
+   push:
+      branches: [ main ]
+   pull_request:
+      branches: [ main ]
 
 jobs:
-build:
+   build:
 
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
+      strategy:
+         matrix:
+            node-version: [18.x]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v2
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+         - name: Set up Node.js ${{ matrix.node-version }}
+           uses: actions/setup-node@v1
+           with:
+              node-version: ${{ matrix.node-version }}
 
-      - name: install and build
-        run: |
-          # cd todo (nur wenn project nicht im root ordner liegt)
-          npm install
-          npm run build
+         - name: install and build
+           run: |
+              # cd todo (nur wenn project nicht im root ordner liegt)
+              npm install
+              npm run build
 
-      - name: Deploy
-        run: |
-          # cd todo (nur wenn project nicht im root ordner liegt)
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin https://${github_token}@github.com/${repository}
-          npm run deploy
-        env:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-          repository: ${{ github.repository }}
+         - name: Deploy
+           run: |
+              # cd todo (nur wenn project nicht im root ordner liegt)
+              git config --global user.name $user_name
+              git config --global user.email $user_email
+              git remote set-url origin https://${github_token}@github.com/${repository}
+              npm run deploy
+           env:
+              user_name: 'github-actions[bot]'
+              user_email: 'github-actions[bot]@users.noreply.github.com'
+              github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+              repository: ${{ github.repository }}
 
 ```
 
