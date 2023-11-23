@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 14
 
-    - name: Change into the todo directory
+    - name: install and build
       run: |
         cd todo
         npm install
@@ -26,8 +26,8 @@ jobs:
 
     - name: Deploy to gh-pages
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
-        git add .
-        git commit -m "Deploy to gh-pages"
-        git push -f origin main:gh-pages
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git --work-tree build add --all
+        git commit -m "Automatic Deploy action run by github-actions"
+        git push origin HEAD:gh-pages --force
