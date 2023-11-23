@@ -24,14 +24,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: change directory
-        run: cd todo
-        
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
+      - name: install and build
+        run: |
+          cd todo
+          npm install
+          npm run build
 
       - name: Deploy
         run: |
