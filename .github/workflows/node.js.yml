@@ -1,20 +1,36 @@
-name: React app deployment
+name: Deploy to gh-pages
 
 on:
   push:
-    branches: [ main ] # Change this to your main branch name
-  pull_request:
-    branches: [ main ] # Change this to your main branch name
+    branches:
+      - main # Change this to the branch you want to trigger the workflow on
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
 
-    - name: Deploy react app to GitHub Pages
-      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
-      env:
-        SOURCE_DIR: 'todo'
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Change into the todo directory
+      run: cd todo
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Deploy to gh-pages
+      run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git add .
+        git commit -m "Deploy to gh-pages"
+        git push -f origin main:gh-pages
