@@ -18,5 +18,3 @@ jobs:
       uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
       env:
         SOURCE_DIR: 'todo'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
