@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "0.1.0",
-  "homepage": "https://itzbubschki.github.io/todo",
+  "homepage": "https://itzbubschki.github.io/Tutor",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
