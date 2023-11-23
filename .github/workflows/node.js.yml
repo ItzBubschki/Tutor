@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main # Change this to your main branch name
+
 permissions:
   contents: read
   pages: write
   id-token: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,14 +23,10 @@ jobs:
       with:
         node-version: 14
 
-    - name: Install Dependencies
+    - name: Install Dependencies and Build React App
       run: |
         cd todo
         npm install
-
-    - name: Build React App
-      run: |
-        cd todo
         npm run build
 
   deploy:
@@ -43,10 +40,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-          # Upload entire repository
-          path: 'todo/build'
+          name: todo-build
+          path: todo/build
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact-name: todo-build
