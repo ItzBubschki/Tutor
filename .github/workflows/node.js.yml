@@ -19,13 +19,10 @@ jobs:
         node-version: 14
 
     - name: Change into the todo directory
-      run: cd todo
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build React app
-      run: npm run build
+      run: |
+        cd todo
+        npm install
+        npm run build
 
     - name: Deploy to gh-pages
       run: |
