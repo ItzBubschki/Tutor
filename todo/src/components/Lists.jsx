@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Item } from "./Item";
+import {Item} from "./Item";
 import "./List.css";
+import {useState} from "react";
+
 export function Lists() {
     const [unfinished, setUnfinished] = useState([]);
     const [finished, setFinished] = useState([]);
