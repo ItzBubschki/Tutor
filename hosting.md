@@ -37,26 +37,58 @@
 
 1. **GitHub-Konto erstellen**: Falls Sie noch kein GitHub-Konto haben, registrieren Sie sich auf [GitHub](https://github.com/) und loggen Sie sich ein.
 
-2. **Erstellen Sie ein Repository**: Erstellen Sie ein neues Repository und laden Sie Ihre statischen Dateien hoch.
+2. **Erstellen Sie ein Repository**: Erstellen Sie ein neues Repository 
+3. **GitHub Pages aktivieren**:
+   - Klicken Sie auf "Settings" und scrollen Sie nach unten zu "GitHub Pages".
+   - Wählen Sie den Branch aus, der Ihre statischen Dateien enthält.
+   - Klicken Sie auf "Save".
+4. **Github action einrichten**
+   ```yaml
+name: CI/CD
 
-3. **Branch und Ordner auswählen**:
-   - Gehen Sie in den Einstellungen Ihres Repositories.
-   - Wählen Sie im Abschnitt "GitHub Pages" den Branch und Ordner aus, der für die Veröffentlichung Ihrer Webseite verwendet werden soll.
+on:
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
 
-4. **Bereitgestellte URL**
-   Nach der Konfiguration können Sie auf die bereitgestellte GitHub Pages-URL zugreifen.
+jobs:
+build:
 
-## GitLab Pages
+    runs-on: ubuntu-latest
 
-**1. GitLab Repository erstellen:** Gehen Sie zu GitLab und melden Sie sich in Ihrem Konto an und erstellen Sie ein neues Git-Repository für Ihr Webseitenprojekt.
+    strategy:
+      matrix:
+        node-version: [18.x]
 
-**2. Statische Dateien hinzufügen:** Laden Sie Ihre statischen Webseiten-Dateien in das GitLab-Repository hoch. Dies können HTML, CSS, JavaScript und andere Ressourcen für Ihre Webseite sein.
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-**3. GitLab Pages konfigurieren:** 
-- Gehen Sie zu den Einstellungen Ihres GitLab-Projekts.
-- Navigieren Sie zum Abschnitt "Pages" oder "Webseiten" und konfigurieren Sie Ihre Einstellungen, einschließlich des Ausgabeverzeichnisses und der Domain (wenn gewünscht).
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-**4. Webseite veröffentlichen:** Speichern Sie Ihre Einstellungen und warten Sie, bis GitLab Pages Ihre Webseite generiert und veröffentlicht. <br/>
-Ihre Webseite wird nun unter Ihrer GitLab Pages-Domain oder der konfigurierten Domain (falls vorhanden) verfügbar sein. <br/>
+      - name: install and build
+        run: |
+          # cd todo (nur wenn project nicht im root ordner liegt)
+          npm install
+          npm run build
 
-Das ist alles! Ihre statische Webseite wird nun über GitLab Pages gehostet.
+      - name: Deploy
+        run: |
+          # cd todo (nur wenn project nicht im root ordner liegt)
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
+
+```
+
+
