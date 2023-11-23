@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Deploy react app to GitHub Pages
-      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.2
+      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
       env:
         SOURCE_DIR: 'todo'
       with:
